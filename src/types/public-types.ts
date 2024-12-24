@@ -11,32 +11,6 @@ export enum ViewMode {
 }
 export type TaskType = "task" | "milestone" | "project";
 
-type TAssignee = string;
-type TObjective = string;
-type TCustomTask = {
-  id: string;
-  title: string;
-  startDate?: string | null | undefined;
-  endDate?: string | null | undefined;
-  priority: "high" | "medium" | "low";
-  status: string;
-  objectives: TObjective[];
-  files: (
-    | File
-    | {
-        attachmentId: string;
-        fileUrl: string;
-        fileName: string;
-        fileType: "image" | "video";
-      }
-  )[];
-  taskAssignee: TAssignee;
-  description: string;
-  isAdding?: boolean;
-  parentTaskId: string;
-  childTaskCount?: number;
-};
-
 export type Task = {
   id: string;
   type: TaskType;
@@ -58,7 +32,7 @@ export type Task = {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
-} & Partial<TCustomTask>;
+};
 
 export interface EventOption {
   /**
