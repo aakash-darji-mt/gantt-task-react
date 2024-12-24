@@ -18,6 +18,7 @@ export interface BarTask extends Task {
     progressColor: string;
     progressSelectedColor: string;
   };
+  renderTaskItem?: JSX.Element;
 }
 
 export type TaskTypeInternal = TaskType | "smalltask";
