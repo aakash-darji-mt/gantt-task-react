@@ -58,7 +58,7 @@ export type Task = {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
-} & TCustomTask;
+} & Partial<TCustomTask>;
 
 export interface EventOption {
   /**
