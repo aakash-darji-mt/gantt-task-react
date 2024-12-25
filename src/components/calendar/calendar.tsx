@@ -41,6 +41,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       const bottomValue = date.getFullYear();
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
@@ -86,6 +87,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       const quarter = "Q" + Math.floor((date.getMonth() + 3) / 3);
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
@@ -130,6 +132,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       const bottomValue = getLocaleMonth(date, locale);
       bottomValues.push(
         <text
+          fontWeight="600"
           key={bottomValue + date.getFullYear()}
           y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
@@ -183,6 +186,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
@@ -227,6 +231,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
@@ -276,6 +281,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
@@ -321,6 +327,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
       bottomValues.push(
         <text
+          fontWeight="600"
           key={date.getTime()}
           y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
