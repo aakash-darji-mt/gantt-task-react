@@ -35,14 +35,14 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getCalendarValuesForYear = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     for (let i = 0; i < dateSetup.dates.length; i++) {
       const date = dateSetup.dates[i];
       const bottomValue = date.getFullYear();
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
           className={styles.calendarBottomText}
         >
@@ -79,7 +79,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getCalendarValuesForQuarterYear = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     for (let i = 0; i < dateSetup.dates.length; i++) {
       const date = dateSetup.dates[i];
       // const bottomValue = getLocaleMonth(date, locale);
@@ -87,7 +87,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
           className={styles.calendarBottomText}
         >
@@ -124,14 +124,14 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getCalendarValuesForMonth = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     for (let i = 0; i < dateSetup.dates.length; i++) {
       const date = dateSetup.dates[i];
       const bottomValue = getLocaleMonth(date, locale);
       bottomValues.push(
         <text
           key={bottomValue + date.getFullYear()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
           className={styles.calendarBottomText}
         >
@@ -169,7 +169,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
     let weeksCount: number = 1;
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     const dates = dateSetup.dates;
     for (let i = dates.length - 1; i >= 0; i--) {
       const date = dates[i];
@@ -184,7 +184,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
           className={styles.calendarBottomText}
         >
@@ -217,7 +217,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getCalendarValuesForDay = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     const dates = dateSetup.dates;
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
@@ -228,7 +228,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * i + columnWidth * 0.5}
           className={styles.calendarBottomText}
         >
@@ -266,7 +266,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
     const ticks = viewMode === ViewMode.HalfDay ? 2 : 4;
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     const dates = dateSetup.dates;
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
@@ -277,7 +277,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
           className={styles.calendarBottomText}
           fontFamily={fontFamily}
@@ -311,7 +311,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const getCalendarValuesForHour = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
-    const topDefaultHeight = headerHeight * 0.5;
+    const topDefaultHeight = headerHeight * 0.65;
     const dates = dateSetup.dates;
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
@@ -322,7 +322,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       bottomValues.push(
         <text
           key={date.getTime()}
-          y={headerHeight * 0.8}
+          y={headerHeight * 0.65}
           x={columnWidth * (i + +rtl)}
           className={styles.calendarBottomText}
           fontFamily={fontFamily}
@@ -355,31 +355,31 @@ export const Calendar: React.FC<CalendarProps> = ({
     return [topValues, bottomValues];
   };
 
-  let topValues: ReactChild[] = [];
   let bottomValues: ReactChild[] = [];
   switch (dateSetup.viewMode) {
     case ViewMode.Year:
-      [topValues, bottomValues] = getCalendarValuesForYear();
+      [, bottomValues] = getCalendarValuesForYear();
       break;
     case ViewMode.QuarterYear:
-      [topValues, bottomValues] = getCalendarValuesForQuarterYear();
+      [, bottomValues] = getCalendarValuesForQuarterYear();
       break;
     case ViewMode.Month:
-      [topValues, bottomValues] = getCalendarValuesForMonth();
+      [, bottomValues] = getCalendarValuesForMonth();
       break;
     case ViewMode.Week:
-      [topValues, bottomValues] = getCalendarValuesForWeek();
+      [, bottomValues] = getCalendarValuesForWeek();
       break;
     case ViewMode.Day:
-      [topValues, bottomValues] = getCalendarValuesForDay();
+      [, bottomValues] = getCalendarValuesForDay();
       break;
     case ViewMode.QuarterDay:
     case ViewMode.HalfDay:
-      [topValues, bottomValues] = getCalendarValuesForPartOfDay();
+      [, bottomValues] = getCalendarValuesForPartOfDay();
       break;
     case ViewMode.Hour:
-      [topValues, bottomValues] = getCalendarValuesForHour();
+      [, bottomValues] = getCalendarValuesForHour();
   }
+
   return (
     <g className="calendar" fontSize={fontSize} fontFamily={fontFamily}>
       <rect
@@ -389,7 +389,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         height={headerHeight}
         className={styles.calendarHeader}
       />
-      {bottomValues} {topValues}
+      {bottomValues}
     </g>
   );
 };
