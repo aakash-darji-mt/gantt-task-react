@@ -188,7 +188,18 @@ export const getLocaleMonth = (date: Date, locale: string) => {
     bottomValue[0],
     bottomValue[0].toLocaleUpperCase()
   );
-  return bottomValue;
+  return bottomValue.slice(0, 3);
+};
+
+export const getLocalDayAndMonth = (
+  date: Date,
+  locale: string,
+  format?: "long" | "short" | "narrow" | undefined
+): string => {
+  return getCachedDateTimeFormat(locale, {
+    day: "numeric",
+    month: format || "long",
+  }).format(date);
 };
 
 export const getLocalDayOfWeek = (
