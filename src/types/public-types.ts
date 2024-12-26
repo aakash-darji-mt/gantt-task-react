@@ -170,4 +170,5 @@ export interface StylingOption {
 export interface GanttProps extends EventOption, DisplayOption, StylingOption {
   tasks: Task[];
   ganttChartTaskRender: (task: Task, index: number) => JSX.Element;
+  taskSeparationLineData?: number[];
 }

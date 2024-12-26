@@ -7,7 +7,7 @@ import {
   getLocalDayAndMonth,
   getLocalDayOfWeek,
   getLocaleMonth,
-  getWeekNumberISO8601,
+  getWeekDateRange,
 } from "../../helpers/date-helper";
 import { DateSetup } from "../../types/date-setup";
 import styles from "./calendar.module.css";
@@ -183,7 +183,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         topValue = `${getLocaleMonth(date, locale)}, ${date.getFullYear()}`;
       }
       // bottom
-      const bottomValue = `W${getWeekNumberISO8601(date)}`;
+      const bottomValue = getWeekDateRange(date);
 
       bottomValues.push(
         <text

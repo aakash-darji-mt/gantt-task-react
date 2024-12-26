@@ -247,6 +247,26 @@ export const getWeekNumberISO8601 = (date: Date) => {
   }
 };
 
+export const getWeekDateRange = (date: Date): string => {
+  const tmpDate = new Date(date.valueOf());
+  const dayNumber = tmpDate.getDay();
+  const startOfWeek = new Date(tmpDate);
+  startOfWeek.setDate(
+    tmpDate.getDate() - dayNumber + (dayNumber === 0 ? -6 : 1)
+  );
+
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+  const formatOptions: Intl.DateTimeFormatOptions = { day: "numeric" };
+  const startDate = startOfWeek.toLocaleDateString("en-US", formatOptions);
+  const endDate = endOfWeek.toLocaleDateString("en-US", formatOptions);
+
+  const month = endOfWeek.toLocaleDateString("en-US", { month: "short" });
+
+  return `${startDate}-${endDate} ${month}`;
+};
+
 export const getDaysInMonth = (month: number, year: number) => {
   return new Date(year, month + 1, 0).getDate();
 };

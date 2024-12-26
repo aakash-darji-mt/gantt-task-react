@@ -1,5 +1,5 @@
 import React, { ReactChild } from "react";
-import { Task } from "../../types/public-types";
+import { GanttProps, Task } from "../../types/public-types";
 import { addToDate } from "../../helpers/date-helper";
 import styles from "./grid.module.css";
 
@@ -11,6 +11,7 @@ export type GridBodyProps = {
   columnWidth: number;
   todayColor: string;
   rtl: boolean;
+  taskSeparationLineData: GanttProps["taskSeparationLineData"];
 };
 export const GridBody: React.FC<GridBodyProps> = ({
   tasks,
@@ -20,19 +21,25 @@ export const GridBody: React.FC<GridBodyProps> = ({
   columnWidth,
   todayColor,
   rtl,
+  taskSeparationLineData,
 }) => {
   let y = 0;
+  const taskSeparationLines: ReactChild[] = [];
+  if (taskSeparationLineData && taskSeparationLineData?.length > 0) {
+    for (const separationLineNumber of taskSeparationLineData) {
+      taskSeparationLines?.push(
+        <line
+          x="0"
+          y1={separationLineNumber * rowHeight}
+          x2={svgWidth}
+          y2={separationLineNumber * rowHeight}
+          className={styles.gridRowLine}
+        />
+      );
+    }
+  }
+
   const gridRows: ReactChild[] = [];
-  const rowLines: ReactChild[] = [
-    <line
-      key="RowLineFirst"
-      x="0"
-      y1={0}
-      x2={svgWidth}
-      y2={0}
-      className={styles.gridRowLine}
-    />,
-  ];
   for (const task of tasks) {
     gridRows.push(
       <rect
@@ -42,16 +49,6 @@ export const GridBody: React.FC<GridBodyProps> = ({
         width={svgWidth}
         height={rowHeight}
         className={styles.gridRow}
-      />
-    );
-    rowLines.push(
-      <line
-        key={"RowLine" + task.id}
-        x="0"
-        y1={y + rowHeight}
-        x2={svgWidth}
-        y2={y + rowHeight}
-        className={styles.gridRowLine}
       />
     );
     y += rowHeight;
@@ -119,9 +116,11 @@ export const GridBody: React.FC<GridBodyProps> = ({
   return (
     <g className="gridBody">
       <g className="rows">{gridRows}</g>
-      <g className="rowLines">{rowLines}</g>
       <g className="ticks">{ticks}</g>
       <g className="today">{today}</g>
+      {taskSeparationLines?.length > 0 && (
+        <g className="separationLines">{taskSeparationLines}</g>
+      )}
     </g>
   );
 };

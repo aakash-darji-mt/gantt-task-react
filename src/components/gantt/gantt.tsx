@@ -66,6 +66,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   onSelect,
   onExpanderClick,
   ganttChartTaskRender,
+  taskSeparationLineData,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
@@ -396,6 +397,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     dates: dateSetup.dates,
     todayColor,
     rtl,
+    taskSeparationLineData,
   };
   const calendarProps: CalendarProps = {
     dateSetup,
